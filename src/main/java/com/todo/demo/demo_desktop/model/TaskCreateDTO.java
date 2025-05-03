@@ -1,21 +1,19 @@
-package com.todo.demo.model.dto;
+package com.todo.demo.demo_desktop.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TaskCreateDTO {
     @NotBlank

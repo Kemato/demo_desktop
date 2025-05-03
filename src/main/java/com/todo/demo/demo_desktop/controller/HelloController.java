@@ -1,4 +1,4 @@
-package com.todo.demo.demo_desktop;
+package com.todo.demo.demo_desktop.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

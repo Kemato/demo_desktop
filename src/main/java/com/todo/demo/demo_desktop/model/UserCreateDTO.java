@@ -1,16 +1,14 @@
-package com.todo.demo.model.dto;
+package com.todo.demo.demo_desktop.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema
 public class UserCreateDTO {
     @NotBlank(message = "User cannot be empty")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")

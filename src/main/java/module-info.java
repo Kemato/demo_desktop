@@ -1,7 +1,5 @@
 module com.todo.demo.demo_desktop {
-    requires javafx.controls;
-    requires javafx.fxml;
-    requires javafx.web;
+
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
@@ -12,7 +10,6 @@ module com.todo.demo.demo_desktop {
     requires com.almasb.fxgl.all;
     requires static lombok;
     requires jakarta.validation;
-
 
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;

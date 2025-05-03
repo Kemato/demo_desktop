@@ -1,17 +1,15 @@
-package com.todo.demo.model.dto;
+package com.todo.demo.demo_desktop.model;
 
-import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import jakarta.validation.constraints.NotNull;
 import java.util.Optional;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Schema
 public class UserUpdateDTO {
     @NotNull
     private Long id;
