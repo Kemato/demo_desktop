@@ -1,4 +1,4 @@
-package com.todo.demo.demo_desktop.model;
+package com.todo.demo.demo_desktop.model.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

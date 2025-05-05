@@ -1,21 +1,21 @@
 package com.todo.demo.demo_desktop.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.todo.demo.demo_desktop.model.UserDTO;
+import com.todo.demo.demo_desktop.model.dto.UserDTO;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import com.fasterxml.jackson.core.type.TypeReference;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
 public class UserService {
 
-    private static final String BASE_URL = "http://localhost:8080/api/user";
+    private static final String BASE_URL = "http://localhost:3000/api/user";
     private static final String TOKEN = "your_auth_token_here"; // 🔐 вставь свой токен
 
     private final HttpClient client;

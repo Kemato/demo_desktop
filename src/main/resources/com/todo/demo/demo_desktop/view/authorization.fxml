@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.todo.demo.demo_desktop.controller.AuthorizationController">
+    <top>
+        <fx:include source="error_message.fxml" fx:id="errorMessageInclude"/>
+    </top>
+    <center>
+        <StackPane fx:id="contentPane">
+            <VBox fx:id="loginPanel" alignment="CENTER" maxWidth="300" spacing="10">
+                <Text>Авторизация</Text>
+                <TextField fx:id="usernameField" promptText="Username"/>
+                <PasswordField fx:id="passwordField" promptText="Password"/>
+                <Button onAction="#handleLogin" styleClass="my-button" text="Login"/>
+            </VBox>
+            <VBox fx:id="registerPanel" alignment="CENTER" maxWidth="300" spacing="10" visible="false">
+                <Text>Регистрация</Text>
+                <TextField fx:id="regUsernameField" promptText="Username"/>
+                <PasswordField fx:id="regPasswordField" promptText="Password"/>
+                <PasswordField fx:id="regPasswordConfirmField" promptText="Repeat password"/>
+                <Button onAction="#handleRegister" text="Register"/>
+            </VBox>
+        </StackPane>
+    </center>
+    <bottom>
+        <HBox alignment="CENTER" layoutY="200" spacing="10">
+            <Button onAction="#showLogin" text="Login"/>
+            <Button onAction="#showRegister" text="Register"/>
+        </HBox>
+    </bottom>
+</BorderPane>

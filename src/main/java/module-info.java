@@ -11,14 +11,13 @@ module com.todo.demo.demo_desktop {
     requires static lombok;
     requires jakarta.validation;
 
+    requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;
     requires java.net.http;
 
-
-//    // вот здесь важное:
-//    opens com.todo.demo.demo_desktop to javafx.fxml, com.fasterxml.jackson.databind;
-//    opens com.todo.demo.demo_desktop.controller to javafx.fxml, com.fasterxml.jackson.databind;
+    opens com.todo.demo.demo_desktop.controller to javafx.fxml;
+    opens com.todo.demo.demo_desktop.service to javafx.fxml;
 
     exports com.todo.demo.demo_desktop;
     exports com.todo.demo.demo_desktop.controller;
