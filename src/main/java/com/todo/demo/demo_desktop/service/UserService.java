@@ -1,62 +1,53 @@
 package com.todo.demo.demo_desktop.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.todo.demo.demo_desktop.api.UserApiClient;
 import com.todo.demo.demo_desktop.model.dto.UserDTO;
+import com.todo.demo.demo_desktop.model.dto.UserUpdateDTO;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.List;
 
 public class UserService {
-
-    private static final String BASE_URL = "http://localhost:3000/api/user";
-    private static final String TOKEN = "your_auth_token_here"; // 🔐 вставь свой токен
-
-    private final HttpClient client;
-    private final ObjectMapper objectMapper;
-
-    public UserService() {
-        this.client = HttpClient.newHttpClient();
-        this.objectMapper = new ObjectMapper();
+    private static UserService instance;
+    private static UserApiClient userApiClient = UserApiClient.getInstance();
+    private UserService() {
+    }
+    public static synchronized UserService getInstance(){
+        if (instance == null) {
+            instance = new UserService();
+        }
+        return instance;
     }
 
-    public List<UserDTO> getAllUsers() throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL))
-                .header("Authorization", "Bearer " + TOKEN)
-                .header("Accept", "application/json")
-                .GET()
-                .build();
-
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            return objectMapper.readValue(response.body(), new TypeReference<>() {});
-        } else {
-            throw new RuntimeException("Ошибка получения пользователей: " + response.statusCode());
+    public UserDTO getUserById(Long id) {
+        try {
+            return userApiClient.getUserById(id);
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Ошибка получения пользователя: " + e.getMessage());
         }
     }
 
-    public UserDTO getUserById(Long id) throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "/" + id))
-                .header("Authorization", "Bearer " + TOKEN)
-                .header("Accept", "application/json")
-                .GET()
-                .build();
+    public List<UserDTO> getAllUsers() {
+        try {
+            return userApiClient.getAllUsers();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Ошибка получения пользователей: " + e.getMessage());
+        }
+    }
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+    public void updateUser(UserUpdateDTO userUpdateDTO) {
+        try {
+            userApiClient.updateUser(userUpdateDTO);
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Ошибка обновления пользователя: " + e.getMessage());
+        }
+    }
 
-        if (response.statusCode() == 200) {
-            return objectMapper.readValue(response.body(), UserDTO.class);
-        } else {
-            throw new RuntimeException("Пользователь не найден: " + response.statusCode());
+    public void deleteUser() {
+        try {
+            userApiClient.deleteUser();
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException("Ошибка удаления пользователя: " + e.getMessage());
         }
     }
 }

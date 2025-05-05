@@ -16,6 +16,18 @@ import java.time.LocalDateTime;
 
 public class AuthApiClient {
 
+    private static AuthApiClient instance;
+
+    private AuthApiClient() {
+    }
+
+    public static synchronized AuthApiClient getInstance() {
+        if (instance == null) {
+            instance = new AuthApiClient();
+        }
+        return instance;
+    }
+
     private final AuthTokenHolder authTokenHolder = AuthTokenHolder.getInstance();
     private final CurrentUserContext currentUser = CurrentUserContext.getInstance();
 
@@ -62,7 +74,7 @@ public class AuthApiClient {
     }
 
     private HttpResponse<String> sendRequest(String endpoint, Object body) {
-        try{
+        try {
             String requestBody = objectMapper.writeValueAsString(body);
 
             HttpRequest request = HttpRequest.newBuilder()
@@ -71,8 +83,7 @@ public class AuthApiClient {
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();
             return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("Ошибка при выполнении запроса: " + e.getMessage(), e);
         }
     }

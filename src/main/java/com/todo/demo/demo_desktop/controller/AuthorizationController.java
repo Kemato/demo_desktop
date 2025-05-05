@@ -71,7 +71,7 @@ public class AuthorizationController {
             }
 
             user.setPassword(password);
-            UserService userService = new UserService();
+//            UserService userService = new UserService();
             // userService.create(user);
             if (errorText != null) {
                 errorText.setText("Регистрация успешна!");
