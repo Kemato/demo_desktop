@@ -1,15 +1,13 @@
 package com.todo.demo.demo_desktop.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.todo.demo.demo_desktop.auth.AuthTokenHolder;
+import com.todo.demo.demo_desktop.api.auth.AuthTokenHolder;
 import com.todo.demo.demo_desktop.model.dto.TaskCreateDTO;
 import com.todo.demo.demo_desktop.model.dto.TaskDTO;
 import com.todo.demo.demo_desktop.model.dto.TaskUpdateDTO;
 
 import java.io.IOException;
-import java.net.URI;
 import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 
@@ -33,7 +31,7 @@ public class TaskApiClient {
         return instance;
     }
 
-    public void createTask(TaskCreateDTO taskCreateDTO) throws IOException, InterruptedException {
+    public TaskDTO createTask(TaskCreateDTO taskCreateDTO) throws IOException, InterruptedException {
         HttpResponse<String> response = buildRequest(
                 BASE_URL,
                 "POST",
@@ -41,10 +39,12 @@ public class TaskApiClient {
         );
         if (response.statusCode() != 201) {
             throw new RuntimeException("Ошибка создания задачи: " + response.statusCode());
+        } else {
+            return mapper.readValue(response.body(), TaskDTO.class);
         }
     }
 
-    public void updateTask(TaskUpdateDTO taskUpdateDTO) throws IOException, InterruptedException {
+    public TaskDTO updateTask(TaskUpdateDTO taskUpdateDTO) throws IOException, InterruptedException {
         HttpResponse<String> response = buildRequest(
                 BASE_URL + "/" + taskUpdateDTO.getId(),
                 "PUT",
@@ -52,6 +52,8 @@ public class TaskApiClient {
         );
         if (response.statusCode() != 200) {
             throw new RuntimeException("Ошибка обновления задачи: " + response.statusCode());
+        } else {
+            return mapper.readValue(response.body(), TaskDTO.class);
         }
     }
 

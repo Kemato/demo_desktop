@@ -1,15 +1,11 @@
 package com.todo.demo.demo_desktop.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.todo.demo.demo_desktop.auth.AuthTokenHolder;
-import com.todo.demo.demo_desktop.auth.CurrentUserContext;
+import com.todo.demo.demo_desktop.api.auth.CurrentUserContext;
 import com.todo.demo.demo_desktop.model.dto.UserDTO;
 import com.todo.demo.demo_desktop.model.dto.UserUpdateDTO;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 

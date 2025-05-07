@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import jfxtras.scene.control.*?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.todo.demo.demo_desktop.controller.TaskDetailController">
+    <GridPane hgap="10" vgap="10">
+        <Label text="Название:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField fx:id="titleField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <Label text="Описание:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextArea fx:id="descriptionArea" prefRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <Label text="Приоритет:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+
+        <Label text="Исполнитель:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <ComboBox fx:id="assigneeBox" editable="true" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <Label text="Пометить задачу выполненной" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <CheckBox fx:id="finishedCheck" text="Задача выполнена" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <DatePicker fx:id="deadlineDatePicker" />
+            <LocalTimePicker fx:id="deadlineTimePicker" nodeOrientation="LEFT_TO_RIGHT">
+            <cursor>
+               <Cursor fx:constant="WAIT" />
+            </cursor></LocalTimePicker>
+        </HBox>
+      <Label text="Назначить новый дедлайн" GridPane.rowIndex="5" />
+      <ComboBox prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+
+    <HBox spacing="10">
+        <Button onAction="#onSave" text="Сохранить" />
+        <Button onAction="#onDelete" text="Удалить" />
+        <Button onAction="#onBack" text="Назад" />
+    </HBox>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

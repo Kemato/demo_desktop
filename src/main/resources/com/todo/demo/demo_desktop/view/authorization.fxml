@@ -8,7 +8,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.todo.demo.demo_desktop.controller.AuthorizationController">
     <top>
-        <fx:include source="error_message.fxml" fx:id="errorMessageInclude"/>
+        <fx:include source="component/error_message.fxml" fx:id="errorMessageInclude"/>
     </top>
     <center>
         <StackPane fx:id="contentPane">

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.todo.demo.demo_desktop.controller.MainController">
+
+    <!-- Левая панель: Меню пользователя -->
+    <left>
+        <VBox spacing="10" style="-fx-background-color: #f0f0f0;" prefWidth="200">
+            <Label text="Меню пользователя" />
+            <Button text="Профиль" />
+            <Button text="Редактировать" />
+            <Button text="Удалить аккаунт" />
+            <Button text="Выход" />
+        </VBox>
+    </left>
+
+    <!-- Верхняя панель: Поиск и фильтры -->
+    <top>
+        <HBox spacing="10" padding="10">
+            <TextField fx:id="searchField" promptText="Поиск задач..." HBox.hgrow="ALWAYS" />
+            <ChoiceBox fx:id="statusFilter">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Все" />
+                        <String fx:value="Выполнено" />
+                        <String fx:value="Ожидает" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <Button text="Создать задачу" onAction="#onCreateTaskClick"/>
+        </HBox>
+    </top>
+
+    <!-- Центральная область: Список задач или подробный просмотр -->
+    <center>
+        <StackPane fx:id="contentPane" padding="10">
+            <!-- Сюда будет подставляться либо список задач, либо развёрнутая задача -->
+        </StackPane>
+    </center>
+</BorderPane>

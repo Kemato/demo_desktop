@@ -1,15 +1,22 @@
 package com.todo.demo.demo_desktop.service;
 
 import com.todo.demo.demo_desktop.api.UserApiClient;
+import com.todo.demo.demo_desktop.api.auth.CurrentUserContext;
 import com.todo.demo.demo_desktop.model.dto.UserDTO;
 import com.todo.demo.demo_desktop.model.dto.UserUpdateDTO;
+import com.todo.demo.demo_desktop.util.ErrorHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class UserService {
     private static UserService instance;
-    private static UserApiClient userApiClient = UserApiClient.getInstance();
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+    private static final UserApiClient userApiClient = UserApiClient.getInstance();
     private UserService() {
     }
     public static synchronized UserService getInstance(){
@@ -23,7 +30,9 @@ public class UserService {
         try {
             return userApiClient.getUserById(id);
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Ошибка получения пользователя: " + e.getMessage());
+            logger.error("Ошибка получения пользователя: {}", e.getMessage());
+            ErrorHandler.showError("Ошибка получения пользователя"+e.getMessage());
+            return null;
         }
     }
 
@@ -31,23 +40,28 @@ public class UserService {
         try {
             return userApiClient.getAllUsers();
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Ошибка получения пользователей: " + e.getMessage());
+            logger.error("Ошибка получения пользователей: {}", e.getMessage());
+            ErrorHandler.showError("Ошибка получения пользователей: " + e.getMessage());
+            return new ArrayList<>();
         }
     }
 
-    public void updateUser(UserUpdateDTO userUpdateDTO) {
+    public UserDTO updateUser(UserUpdateDTO userUpdateDTO) {
         try {
             userApiClient.updateUser(userUpdateDTO);
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Ошибка обновления пользователя: " + e.getMessage());
+            logger.error("Ошибка обновления пользователя: {}", e.getMessage());
+            ErrorHandler.showError("Ошибка обновления пользователя: " + e.getMessage());
         }
+        return CurrentUserContext.getInstance().getCurrentUser();
     }
 
     public void deleteUser() {
         try {
             userApiClient.deleteUser();
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException("Ошибка удаления пользователя: " + e.getMessage());
+            logger.error("Ошибка удаления пользователя: {}", e.getMessage());
+            ErrorHandler.showError("Ошибка удаления пользователя: " + e.getMessage());
         }
     }
 }

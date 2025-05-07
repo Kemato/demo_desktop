@@ -1,4 +1,4 @@
-package com.todo.demo.demo_desktop.auth;
+package com.todo.demo.demo_desktop.api.auth;
 
 import lombok.Getter;
 import lombok.Setter;

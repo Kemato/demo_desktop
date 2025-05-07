@@ -15,10 +15,13 @@ module com.todo.demo.demo_desktop {
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.core;
     requires java.net.http;
+    requires org.slf4j;
+    requires jfxtras.controls;
 
     opens com.todo.demo.demo_desktop.controller to javafx.fxml;
     opens com.todo.demo.demo_desktop.service to javafx.fxml;
 
     exports com.todo.demo.demo_desktop;
     exports com.todo.demo.demo_desktop.controller;
+    exports com.todo.demo.demo_desktop.model.dto;
 }

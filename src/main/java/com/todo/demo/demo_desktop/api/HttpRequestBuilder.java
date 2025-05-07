@@ -1,7 +1,7 @@
 package com.todo.demo.demo_desktop.api;
 
-import com.todo.demo.demo_desktop.auth.AuthApiClient;
-import com.todo.demo.demo_desktop.auth.AuthTokenHolder;
+import com.todo.demo.demo_desktop.api.auth.AuthApiClient;
+import com.todo.demo.demo_desktop.api.auth.AuthTokenHolder;
 
 import java.io.IOException;
 import java.net.URI;
