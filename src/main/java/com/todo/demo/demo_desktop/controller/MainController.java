@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -21,10 +22,27 @@ public class MainController {
     @FXML
     private ChoiceBox<String> statusFilter;
 
+    @FXML private AnchorPane sidebarContainer;
+
+    @FXML private AnchorPane mainContainer;
+
     @FXML
     public void initialize() {
         statusFilter.setValue("Все");
         loadTaskListView(); // Загружаем список задач по умолчанию
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sidebar.fxml"));
+            Node sidebar = loader.load();
+
+            // получаем контроллер sidebar
+            SidebarController sidebarController = loader.getController();
+            sidebarController.setMainController(this);
+
+            sidebarContainer.getChildren().add(sidebar);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void loadTaskListView() {
@@ -53,5 +71,14 @@ public class MainController {
         } catch (IOException e) {
 
         }
+    }
+
+    public void showTaskView() {
+    }
+
+    public void showUserProfile() {
+    }
+
+    public void showSettings() {
     }
 }

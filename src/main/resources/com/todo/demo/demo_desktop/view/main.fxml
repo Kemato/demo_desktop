@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.todo.demo.demo_desktop.controller.MainController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.todo.demo.demo_desktop.controller.MainController">
 
     <!-- Левая панель: Меню пользователя -->
     <left>
-        <VBox spacing="10" style="-fx-background-color: #f0f0f0;" prefWidth="200">
+        <VBox prefHeight="157.0" prefWidth="120.0" spacing="10" style="-fx-background-color: #f0f0f0;">
             <Label text="Меню пользователя" />
             <Button text="Профиль" />
             <Button text="Редактировать" />
@@ -21,7 +20,7 @@
 
     <!-- Верхняя панель: Поиск и фильтры -->
     <top>
-        <HBox spacing="10" padding="10">
+        <HBox spacing="10">
             <TextField fx:id="searchField" promptText="Поиск задач..." HBox.hgrow="ALWAYS" />
             <ChoiceBox fx:id="statusFilter">
                 <items>
@@ -32,14 +31,12 @@
                     </FXCollections>
                 </items>
             </ChoiceBox>
-            <Button text="Создать задачу" onAction="#onCreateTaskClick"/>
+            <Button onAction="#onCreateTaskClick" text="Создать задачу" />
         </HBox>
     </top>
-
-    <!-- Центральная область: Список задач или подробный просмотр -->
-    <center>
-        <StackPane fx:id="contentPane" padding="10">
+   <bottom>
+        <StackPane fx:id="contentPane" BorderPane.alignment="CENTER">
             <!-- Сюда будет подставляться либо список задач, либо развёрнутая задача -->
         </StackPane>
-    </center>
+   </bottom>
 </BorderPane>

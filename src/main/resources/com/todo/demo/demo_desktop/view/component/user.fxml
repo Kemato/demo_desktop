@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="408.0" prefWidth="107.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.todo.demo.demo_desktop.view.component.UserMenuController">
+   <children>
+      <VBox prefHeight="408.0" prefWidth="112.0" />
+   </children>
+</AnchorPane>
