@@ -1,7 +1,6 @@
 package com.todo.demo.demo_desktop.controller;
 
 import com.todo.demo.demo_desktop.model.dto.UserCreateDTO;
-import com.todo.demo.demo_desktop.service.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -11,40 +10,31 @@ import javafx.scene.text.Text;
 
 public class AuthorizationController {
 
-    @FXML
-    private VBox loginPanel;
+    @FXML private VBox loginPanel;
 
-    @FXML
-    private VBox registerPanel;
+    @FXML private VBox registerPanel;
 
-    @FXML
-    private TextField usernameField;
+    @FXML private TextField usernameField;
 
-    @FXML
-    private PasswordField passwordField;
+    @FXML private PasswordField passwordField;
 
-    @FXML
-    private TextField regUsernameField;
+    @FXML private TextField regUsernameField;
 
-    @FXML
-    private TextField regPasswordField;
+    @FXML private TextField regPasswordField;
 
-    @FXML
-    private TextField regPasswordConfirmField;
+    @FXML private TextField regPasswordConfirmField;
 
-    @FXML
-    private HBox errorMessageInclude; // Контейнер для включенного FXML
+    @FXML private HBox errorMessageInclude; // Контейнер для включенного FXML
 
     private Text errorText; // Поле для отображения ошибок
 
-    @FXML
-    private void initialize() {
+    @FXML private void initialize() {
         // Получаем доступ к errorText из включенного FXML
         errorText = (Text) errorMessageInclude.lookup("#errorText");
     }
 
     @FXML
-    private void handleLogin(){
+    private void handleLogin() {
 
     }
 
@@ -66,8 +56,7 @@ public class AuthorizationController {
             }
 
             if (!isPasswordValid(password)) {
-                throw new IllegalArgumentException("Пароль не соответствует требованиям:\n" +
-                        "Минимум 8 символов, одна цифра, одна буква и один спецсимвол");
+                throw new IllegalArgumentException("Пароль не соответствует требованиям:\n" + "Минимум 8 символов, одна цифра, одна буква и один спецсимвол");
             }
 
             user.setPassword(password);
@@ -94,20 +83,17 @@ public class AuthorizationController {
         if (!password.matches(".*\\d.*")) {
             return false; // Должен содержать хотя бы одну цифру
         }
-        if (!password.matches(".*[a-zA-Z].*")) {
-            return false; // Должен содержать хотя бы одну букву
-        }
-        return true;
+        return password.matches(".*[a-zA-Z].*"); // Должен содержать хотя бы одну букву
     }
 
     @FXML
-    private void showLogin(){
+    private void showLogin() {
         loginPanel.setVisible(true);
         registerPanel.setVisible(false);
     }
 
     @FXML
-    private void showRegister(){
+    private void showRegister() {
         loginPanel.setVisible(false);
         registerPanel.setVisible(true);
     }
