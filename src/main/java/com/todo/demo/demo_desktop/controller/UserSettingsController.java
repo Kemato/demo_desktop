@@ -1,4 +1,4 @@
 package com.todo.demo.demo_desktop.controller;
 
-public class UserController {
+public class UserSettingsController {
 }

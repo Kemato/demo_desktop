@@ -7,7 +7,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import jfxtras.scene.control.LocalTimePicker;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 public class FieldChangeListener {
     private final BooleanProperty changed = new SimpleBooleanProperty(false);
 

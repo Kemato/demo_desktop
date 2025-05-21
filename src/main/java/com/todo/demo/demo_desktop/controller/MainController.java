@@ -1,84 +1,87 @@
 package com.todo.demo.demo_desktop.controller;
 
-import javafx.event.ActionEvent;
+import com.todo.demo.demo_desktop.model.dto.TaskDTO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainController {
 
-    @FXML
-    private StackPane contentPane;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private ChoiceBox<String> statusFilter;
-
-    @FXML private AnchorPane sidebarContainer;
-
-    @FXML private AnchorPane mainContainer;
+    @FXML private StackPane contentPane;
+    @FXML private VBox taskListPane;
+    @FXML private VBox taskCreatePane;
+    @FXML private VBox taskDetailPane;
+    @FXML private VBox settingsPane;
+    @FXML private VBox userProfilePane;
+    @FXML private VBox userSettingsPane;
 
     @FXML
     public void initialize() {
-        statusFilter.setValue("Все");
-        loadTaskListView(); // Загружаем список задач по умолчанию
-
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/sidebar.fxml"));
-            Node sidebar = loader.load();
-
-            // получаем контроллер sidebar
-            SidebarController sidebarController = loader.getController();
-            sidebarController.setMainController(this);
-
-            sidebarContainer.getChildren().add(sidebar);
+            taskListPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../component/task_list.fxml")));
+            showTaskList();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void loadTaskListView() {
-        loadContent("/com/todo/demo/demo_desktop/view/component/task_list.fxml");
-    }
-
-    public void loadTaskDetailView(Long taskId) {
-        // пример, как можно передать taskId в контроллер через FXML loader (если нужно)
-        loadContent("/com/todo/demo/demo_desktop/view/component/task_detail.fxml");
-    }
-
-    public void loadTaskCreateView() {
-        loadContent("/com/todo/demo/demo_desktop/view/component/task_create.fxml");
-    }
-
-    @FXML
-    public void onCreateTaskClick(ActionEvent event) {
-        loadTaskCreateView();
-    }
-
-    private void loadContent(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Node node = loader.load();
-            contentPane.getChildren().setAll(node); // Заменяем содержимое центральной панели
-        } catch (IOException e) {
-
-        }
-    }
-
-    public void showTaskView() {
+    public void showUserSettingsPane(){
+        hide();
+        userSettingsPane.setVisible(true);
+        userSettingsPane.setManaged(true);
     }
 
     public void showUserProfile() {
+        hide();
+        userProfilePane.setVisible(true);
+        userProfilePane.setManaged(true);
     }
 
     public void showSettings() {
+        hide();
+        settingsPane.setVisible(true);
+        settingsPane.setManaged(true);
+    }
+
+    public void showTaskList() {
+        hide();
+        taskListPane.setVisible(true);
+        taskListPane.setManaged(true);
+    }
+
+    public void showTaskDetail(TaskDTO task) {
+        hide();
+        taskDetailPane.setVisible(true);
+        taskDetailPane.setManaged(true);
+    }
+
+    public void showTaskCreate(TaskDTO task) {
+        hide();
+        taskCreatePane.setVisible(true);
+        taskCreatePane.setManaged(true);
+    }
+
+    private void hide(){
+        settingsPane.setVisible(false);
+        settingsPane.setManaged(false);
+
+        userSettingsPane.setVisible(false);
+        userSettingsPane.setManaged(false);
+
+        userProfilePane.setVisible(false);
+        userProfilePane.setManaged(false);
+
+        taskCreatePane.setVisible(false);
+        taskCreatePane.setManaged(false);
+
+        taskDetailPane.setVisible(false);
+        taskDetailPane.setManaged(false);
+
+        taskListPane.setVisible(false);
+        taskListPane.setManaged(false);
     }
 }

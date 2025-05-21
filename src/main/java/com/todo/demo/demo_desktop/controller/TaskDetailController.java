@@ -21,24 +21,41 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TaskDetailController implements Initializable {
-    @FXML private TextField titleField;
-    FieldChangeListener titleListener = new FieldChangeListener(titleField);
-    @FXML private TextArea descriptionArea;
-    FieldChangeListener descriptionListener = new FieldChangeListener(descriptionArea);
-    @FXML private ComboBox<String> statusBox;
-    FieldChangeListener statusListener = new FieldChangeListener(statusBox);
-    @FXML private ComboBox<String> priorityBox;
-    FieldChangeListener priorityListener = new FieldChangeListener(priorityBox);
-    @FXML private ComboBox<UserDTO> assigneeBox;
-    FieldChangeListener assigneeListener = new FieldChangeListener(assigneeBox);
-    @FXML public DatePicker deadlineDatePicker;
-    FieldChangeListener deadlineDateListener = new FieldChangeListener(deadlineDatePicker);
-    @FXML public LocalTimePicker deadlineTimePicker;
-    FieldChangeListener deadlineTimeListener = new FieldChangeListener(deadlineTimePicker);
-    @FXML public CheckBox finishedCheck;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextArea descriptionArea;
+    @FXML
+    private ComboBox<String> statusBox;
+    @FXML
+    private ComboBox<String> priorityBox;
+    @FXML
+    private ComboBox<UserDTO> assigneeBox;
+    @FXML
+    public DatePicker deadlineDatePicker;
+    @FXML
+    public LocalTimePicker deadlineTimePicker;
+    @FXML
+    public CheckBox finishedCheck;
+
+    private FieldChangeListener titleListener;
+    private FieldChangeListener descriptionListener;
+    private FieldChangeListener statusListener;
+    private FieldChangeListener priorityListener;
+    private FieldChangeListener assigneeListener;
+    private FieldChangeListener deadlineDateListener;
+    private FieldChangeListener deadlineTimeListener;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        titleListener = new FieldChangeListener(titleField);
+        descriptionListener = new FieldChangeListener(descriptionArea);
+        statusListener = new FieldChangeListener(statusBox);
+        priorityListener = new FieldChangeListener(priorityBox);
+        assigneeListener = new FieldChangeListener(assigneeBox);
+        deadlineDateListener = new FieldChangeListener(deadlineDatePicker);
+        deadlineTimeListener = new FieldChangeListener(deadlineTimePicker);
+
         // Настройка слушателя для проверки введённого текста в ComboBox
         assigneeBox.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             if (!allUsersNames.contains(newValue)) {
@@ -79,12 +96,12 @@ public class TaskDetailController implements Initializable {
 
         TaskUpdateDTO dto = new TaskUpdateDTO();
         dto.setId(task.getId());
-        if(titleListener.isChanged())dto.setTitle(Optional.of(titleField.getText()));
-        if(descriptionListener.isChanged())dto.setDescription(Optional.of(descriptionArea.getText()));
-        if(statusListener.isChanged())dto.setStatus(Optional.of(statusBox.getValue()));
-        if(priorityListener.isChanged())dto.setPriority(Optional.of(priorityBox.getValue()));
-        if(deadlineDateListener.isChanged() | deadlineTimeListener.isChanged())
-            dto.setDeadline(Optional.of(LocalDateTime.of(deadlineDatePicker.getValue(),deadlineTimePicker.getLocalTime())));
+        if (titleListener.isChanged()) dto.setTitle(Optional.of(titleField.getText()));
+        if (descriptionListener.isChanged()) dto.setDescription(Optional.of(descriptionArea.getText()));
+        if (statusListener.isChanged()) dto.setStatus(Optional.of(statusBox.getValue()));
+        if (priorityListener.isChanged()) dto.setPriority(Optional.of(priorityBox.getValue()));
+        if (deadlineDateListener.isChanged() | deadlineTimeListener.isChanged())
+            dto.setDeadline(Optional.of(LocalDateTime.of(deadlineDatePicker.getValue(), deadlineTimePicker.getLocalTime())));
 
         if (finishedCheck.isSelected()) {
             dto.setStatus(Optional.of("FINISHED"));

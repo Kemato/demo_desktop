@@ -4,6 +4,7 @@ import com.todo.demo.demo_desktop.api.auth.CurrentUserContext;
 import com.todo.demo.demo_desktop.model.dto.TaskCreateDTO;
 import com.todo.demo.demo_desktop.service.TaskService;
 import javafx.fxml.FXML;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TaskCreateController {
 
+    public DatePicker deadlineDatePicker;
     @FXML private TextField titleField;
     @FXML private TextArea descriptionArea;
     @FXML private TextField priorityField;

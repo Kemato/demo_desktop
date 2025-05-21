@@ -1,61 +1,56 @@
 package com.todo.demo.demo_desktop.controller;
 
 import com.todo.demo.demo_desktop.model.dto.TaskDTO;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TaskListController {
 
-    @FXML
-    private TableView<TaskDTO> taskTable;
+    @FXML private  VBox taskContainer;
 
-    @FXML
-    private TableColumn<TaskDTO, String> titleColumn;
-
-    @FXML
-    private TableColumn<TaskDTO, String> priorityColumn;
-
-    @FXML
-    private TableColumn<TaskDTO, String> assignedToColumn;
-
-    @FXML
-    private TableColumn<TaskDTO, String> shortDescriptionColumn;
+    @Setter
+    private MainController mainController;
 
     @FXML
     public void initialize() {
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        priorityColumn.setCellValueFactory(new PropertyValueFactory<>("priority"));
-        assignedToColumn.setCellValueFactory(new PropertyValueFactory<>("assignedTo"));
-        shortDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("shortDescription"));
-
-        taskTable.setItems(loadDummyTasks()); // Заглушка — в будущем будет API
+        loadTasks();
     }
 
-    private ObservableList<TaskDTO> loadDummyTasks() {
-        ObservableList<TaskDTO> list = FXCollections.observableArrayList();
+    private void loadTasks() {
+        // Здесь можно получить список задач, пока тестовый список:
+        List<TaskDTO> tasks = new ArrayList<>();
+        for(int i = 0; i < 3; i++){
+            TaskDTO task = new TaskDTO();
+            task.setId((long)i);
+            task.setTitle("Task " + (i+1));
+            task.setDescription("Task " + (i+1)+ " Task");
+            task.setPriority("Medium Rare");
+            tasks.add(task);
+        }
 
-        TaskDTO task = new TaskDTO(
-                1L,
-                "Задача 1",
-                "Высокий",
-                "В работе",
-                "LOWER",
-                "Назначено",
-                "Автор",
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                null
-        );
+        for (TaskDTO task : tasks) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/todo/demo/demo_desktop/view/component/task_item.fxml"));
+                Node node = loader.load();
+                TaskItemController controller = loader.getController();
+                controller.setTask(task);
 
-        for(int i = 0; i < 20;i++)list.add(task);
+                // Можно добавить слушатель на клик:
+                node.setOnMouseClicked(event -> mainController.showTaskDetail(task));
 
-        return list;
+                taskContainer.getChildren().add(node);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 }

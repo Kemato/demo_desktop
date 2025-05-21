@@ -17,7 +17,8 @@
         <Label text="Приоритет:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 
         <Label text="Исполнитель:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <ComboBox fx:id="assigneeBox" editable="true" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <ComboBox fx:id="9щ0\
+" editable="true" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
         <Label text="Пометить задачу выполненной" GridPane.columnIndex="0" GridPane.rowIndex="4" />
         <CheckBox fx:id="finishedCheck" text="Задача выполнена" GridPane.columnIndex="1" GridPane.rowIndex="4" />

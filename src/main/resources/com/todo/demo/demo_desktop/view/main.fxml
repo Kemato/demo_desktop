@@ -5,38 +5,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.todo.demo.demo_desktop.controller.MainController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12"
+            fx:controller="com.todo.demo.demo_desktop.controller.MainController">
 
     <!-- Левая панель: Меню пользователя -->
     <left>
-        <VBox prefHeight="157.0" prefWidth="120.0" spacing="10" style="-fx-background-color: #f0f0f0;">
-            <Label text="Меню пользователя" />
-            <Button text="Профиль" />
-            <Button text="Редактировать" />
-            <Button text="Удалить аккаунт" />
-            <Button text="Выход" />
-        </VBox>
+        <fx:include source="component/sidebar.fxml"/>
     </left>
-
-    <!-- Верхняя панель: Поиск и фильтры -->
-    <top>
-        <HBox spacing="10">
-            <TextField fx:id="searchField" promptText="Поиск задач..." HBox.hgrow="ALWAYS" />
-            <ChoiceBox fx:id="statusFilter">
-                <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Все" />
-                        <String fx:value="Выполнено" />
-                        <String fx:value="Ожидает" />
-                    </FXCollections>
-                </items>
-            </ChoiceBox>
-            <Button onAction="#onCreateTaskClick" text="Создать задачу" />
-        </HBox>
-    </top>
-   <bottom>
-        <StackPane fx:id="contentPane" BorderPane.alignment="CENTER">
-            <!-- Сюда будет подставляться либо список задач, либо развёрнутая задача -->
+    <center>
+        <StackPane fx:id="contentPane">
+            <VBox fx:id="taskListPane">
+                <fx:include source="component/task_list.fxml"/>
+            </VBox>
+            <VBox fx:id="taskCreatePane" visible="false" managed="false">
+                <fx:include source="component/task_create.fxml"/>
+            </VBox>
+            <VBox fx:id="taskDetailPane" visible="false" managed="false">
+                <fx:include source="component/task_detail.fxml"/>
+            </VBox>
+            <VBox fx:id="userProfilePane" visible="false" managed="false">
+                <fx:include source="component/user_profile.fxml"/>
+            </VBox>
+            <VBox fx:id="userSettingsPane" visible="false" managed="false">
+                <fx:include source="component/user_settings.fxml"/>
+            </VBox>
+            <VBox fx:id="settingsPane" visible="false" managed="false">
+                <fx:include source="component/settings.fxml"/>
+            </VBox>
         </StackPane>
-   </bottom>
+    </center>
 </BorderPane>

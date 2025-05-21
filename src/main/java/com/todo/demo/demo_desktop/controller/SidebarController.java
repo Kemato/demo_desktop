@@ -25,7 +25,7 @@ public class SidebarController {
         // Можно добавить listener:
         menuGroup.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
             if (newToggle == taskMenuButton) {
-                mainController.showTaskView();
+                mainController.showTaskList();
             } else if (newToggle == userMenuButton) {
                 mainController.showUserProfile();
             } else if (newToggle == settingsButton) {

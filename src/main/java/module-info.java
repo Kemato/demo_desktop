@@ -17,6 +17,7 @@ module com.todo.demo.demo_desktop {
     requires java.net.http;
     requires org.slf4j;
     requires jfxtras.controls;
+    requires java.desktop;
 
     opens com.todo.demo.demo_desktop.controller to javafx.fxml;
     opens com.todo.demo.demo_desktop.service to javafx.fxml;

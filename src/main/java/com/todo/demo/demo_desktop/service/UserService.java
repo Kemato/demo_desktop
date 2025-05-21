@@ -37,13 +37,27 @@ public class UserService {
     }
 
     public List<UserDTO> getAllUsers() {
-        try {
-            return userApiClient.getAllUsers();
-        } catch (IOException | InterruptedException e) {
-            logger.error("Ошибка получения пользователей: {}", e.getMessage());
-            ErrorHandler.showError("Ошибка получения пользователей: " + e.getMessage());
-            return new ArrayList<>();
-        }
+        // fixme.. Убрать мок
+        List<UserDTO> users = new ArrayList<>();
+        UserDTO user1 = new UserDTO();
+        user1.setId(1L);
+        user1.setName("Иван Иванов");
+        users.add(user1);
+
+        UserDTO user2 = new UserDTO();
+        user2.setId(2L);
+        user2.setName("Мария Петрова");
+        users.add(user2);
+
+        return users;
+
+//        try {
+//            return userApiClient.getAllUsers();
+//        } catch (IOException | InterruptedException e) {
+//            logger.error("Ошибка получения пользователей: {}", e.getMessage());
+//            ErrorHandler.showError("Ошибка получения пользователей: " + e.getMessage());
+//            return new ArrayList<>();
+//        }
     }
 
     public UserDTO updateUser(UserUpdateDTO userUpdateDTO) {

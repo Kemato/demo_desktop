@@ -3,13 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.todo.demo.demo_desktop.controller.TaskListController">
-    <TableView fx:id="taskTable" prefWidth="600.0" layoutX="10.0" layoutY="10.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <columns>
-            <TableColumn fx:id="titleColumn" text="Название" prefWidth="150"/>
-            <TableColumn fx:id="priorityColumn" text="Приоритет" prefWidth="100"/>
-            <TableColumn fx:id="assignedToColumn" text="Кому назначено" prefWidth="150"/>
-            <TableColumn fx:id="shortDescriptionColumn" text="Описание" prefWidth="200"/>
-        </columns>
-    </TableView>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.todo.demo.demo_desktop.controller.TaskListController">
+    <ScrollPane fitToWidth="true">
+        <VBox fx:id="taskContainer" spacing="10"/>
+    </ScrollPane>
 </AnchorPane>
+

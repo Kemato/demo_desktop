@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.todo.demo.demo_desktop.controller.TaskItemController"
+      spacing="10" styleClass="task-item">
+    <VBox>
+        <Label fx:id="titleLabel" styleClass="task-title"/>
+        <Label fx:id="shortDescriptionLabel" wrapText="true"/>
+    </VBox>
+    <Label fx:id="priorityLabel"/>
+</HBox>

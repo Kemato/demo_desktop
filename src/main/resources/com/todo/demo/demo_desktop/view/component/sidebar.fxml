@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
-
 <?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.ToggleGroup?>
-<AnchorPane maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0"
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane prefWidth="200.0" maxWidth="200.0" minWidth="200.0"
             xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../../styles/style.css"
             fx:controller="com.todo.demo.demo_desktop.controller.SidebarController">
-    <children>
-        <VBox layoutX="-6.0" maxHeight="400.0" maxWidth="200.0" minHeight="400.0" minWidth="200.0" prefHeight="400.0"
-              prefWidth="200.0">
-
-            <ToggleButton fx:id="taskMenuButton" text="Задачи" toggleGroup="$menuGroup"/>
-            <ToggleButton fx:id="userMenuButton" text="Профиль" toggleGroup="$menuGroup"/>
-            <ToggleButton fx:id="settingsButton" text="Настройки" toggleGroup="$menuGroup"/>
-        </VBox>
-    </children>
+    <VBox prefWidth="200.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+        <ToggleButton fx:id="taskMenuButton" text="Задачи"/>
+        <ToggleButton fx:id="userMenuButton" text="Профиль"/>
+        <ToggleButton fx:id="settingsButton" text="Настройки"/>
+    </VBox>
 </AnchorPane>

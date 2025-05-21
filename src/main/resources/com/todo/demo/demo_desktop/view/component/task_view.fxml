@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.todo.demo.demo_desktop.controller.TaskViewController"
+      spacing="12">
+
+    <Label fx:id="titleLabel" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10">
+        <Label text="Автор:"/>
+        <Label fx:id="authorLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Исполнитель:"/>
+        <Label fx:id="assigneeLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Статус:"/>
+        <Label fx:id="statusLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Приоритет:"/>
+        <Label fx:id="priorityLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Создано:"/>
+        <Label fx:id="dateCreatedLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Обновлено:"/>
+        <Label fx:id="dateUpdatedLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Дедлайн:"/>
+        <Label fx:id="deadlineLabel"/>
+    </HBox>
+
+    <HBox spacing="10">
+        <Label text="Завершено:"/>
+        <Label fx:id="dateFinishedLabel"/>
+    </HBox>
+
+    <Label text="Описание:" style="-fx-font-weight: bold"/>
+    <TextArea fx:id="descriptionArea" editable="false" wrapText="true" prefRowCount="10"/>
+
+</VBox>
